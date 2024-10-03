@@ -1,3 +1,11 @@
+""" 
+    @Author: Likhitha S
+    @Date: 03-10-2024 12:20
+    @Last Modified by: Likhitha S
+    @Last Modified time: 03-10-2024 12:20
+    @Title: Write a Python program to Check Employee is Present or Absent - Use ((RANDOM)) for Attendance Check
+"""
+
 import random
 
 def check_attendance(attended):
@@ -9,7 +17,6 @@ def check_attendance(attended):
     Returns:
         Prints whether the employee is present or absent.
     """
-    
     
     if attended == 1:
         print("Employee is present!!!")
@@ -26,7 +33,6 @@ def Emp_Daily_Wage(wage_per_hour, no_of_hour):
     Returns:
         Prints the total earnings of the employee.
     """
-    
     
     total_earning = wage_per_hour * no_of_hour
     print(f"Daily wage that an employee will earn: {total_earning} rupees")
