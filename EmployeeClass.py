@@ -4,8 +4,8 @@
     @Date: 04-10-2024 13:00
     @Last Modified by: Likhitha S
     @Last Modified time: 04-10-2024 13:30
-    @Title: Write a Python program to Add Part time Employee & Wage - Assume Part time Hour is 8.
-    
+    @Title: explain refactor the code to write a class method to compute Employee wage - use Class Method and Class Variables
+
 """
 
 import random
