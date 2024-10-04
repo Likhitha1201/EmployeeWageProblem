@@ -1,159 +1,131 @@
+
 """ 
+
     @Author: Likhitha S
-    @Date: 03-10-2024 12:20
+    @Date: 03-10-2024 17:20
     @Last Modified by: Likhitha S
-    @Last Modified time: 03-10-2024 12:20
-    @Title: Write a Python program to Check Employee is Present or Absent - Use ((RANDOM)) for Attendance Check
+    @Last Modified time: 04-10-2024 13:10
+    @Title: Write a Python program to Add Part time Employee & Wage - Assume Part time Hour is 8.
+    
 """
 
 import random
 
-def check_attendance(attended):
-    """
-    Description: 
-       This function checks the attendance of an employee.
-    Parameters:
-       attended: A parameter that indicates if the employee is present (1) or absent (0).
-    Returns:
-        Prints whether the employee is present or absent.
-    """
+class Employee:
+    # static variables -> per_day_hour and amt_perhour
+    per_day_hour=8
+    part_time=4
+    amt_perhour=40
+    total_hour=50
+    total_parttime_hour=28
     
-    if attended == 1:
-        print("Employee is present!!!")
-    else:
-        print("Employee is absent!!!")
-
-def Emp_Daily_Wage(wage_per_hour, no_of_hour):
-    """
-    Description:
-       This function calculates the daily wage of an employee.
-    Parameters:
-       wage_per_hour: The wage rate per hour.
-       no_of_hour: The number of hours worked.
-    Returns:
-        Prints the total earnings of the employee.
-    """
-    
-    print("--daily wages--")
-    total_earning = wage_per_hour * no_of_hour
-    print(f"Daily wage that an employee will earn: {total_earning} rupees")
-
-def parttime_emp_wage(no_of_hours, per_hour_wage ):
-    """
+    def welcome(self):
+        """
         
         Description: 
-           This function is used to calculate the part time wage of an employees.
-        Parameters:
-           no_of_hours, per_hour_wage is a parameter that used to check the condition
+           This function is used welcome the user.
         Return:
-            It prints the output according to the calculation . 
+            It prints the welcome message. 
         
-    """
-    
-    print("--parttime wages--")
-    total_wages=no_of_hours*per_hour_wage
-    print(f"parttime wage do employee get for his/her work will be: {total_wages} rupees")
-    
-    
-def match_cases():
-    """
+        """
+        
+        print("Welcome to Employee Wage Program...!!")
+        
+    def attendance(self):
+        """
         
         Description: 
-           This function is used to match the test cases according to user's requirement.
+           This function is used to check attendance of all employees.
         Parameters:
-           choice is a container to hold the user input .
+           attend is container used to strore the random values.
         Return:
-            It prints the output according to the given choice . 
+            It returns wheather employees present or not. 
         
-    """
-    
-    print("--match cases--")
-    choice=int(input("Enter the choices between 1 to 3:"))
-    match choice:
-        case 1:
-            check_attendance(random.randint(0, 1))
-        case 2:
-            Emp_Daily_Wage(20, 8)
-        case 3:
-            parttime_emp_wage(4, 8)
+        """
+        
+        attend=random.randint(0,2)
+        return attend
+        
 
-match_cases()
-
-
-def  monthly_emp_wage(daily_wages, working_days ):
-    """
+    def compute_daily_wage(self):
+        """
         
         Description: 
-           This function is used to calculate the part time wage of an employees.
+           This function is used to calculate the dialy wages of an employee.
         Parameters:
-           no_of_hours, per_hour_wage is a parameter that used to check the condition
+           amt_per_day is container used to strore the daily wages of an employee.
         Return:
-            It prints the output according to the calculation . 
+            It returns the daily wages of an employees. 
         
-    """
-    print("--monthly wages--")
-    total_wages=daily_wages* working_days
-    print(f"total wage do employee get for his/her work will be: {total_wages} rupees")
+        """
+        
+        amt_per_day=self.per_day_hour*self.amt_perhour
+        return amt_per_day
+  
+  
+    def compute_part_time(self):
+        """
+        
+        Description: 
+           This function is used to calculate the parttime wages of an employee.
+        Parameters:
+           amt_per_day is container used to strore the parttime wages of an employee.
+        Return:
+            It returns the parttime wages of an employees. 
+        
+        """
+        
+        amt_parttime=self.part_time*self.amt_perhour
+        return amt_parttime
+    
+    def compute_monthly_wages(self):
+        """
+        
+        Description: 
+           This function is used to calculate the monthly wages along with the attendance datails of all employee.
+        Parameters:
+           attend_list, wages, attend, total_wage is container used to strore the attendance details and monthly wages in a two different list's, attend is storing the called method, and total wages is used to strore overall salary of all the employees.
+        Return:
+            It prints the attend_list and wages of all employees, and returns returns the overall wages of all employees. 
+        
+        """
+        
+        
+        attend_list=[]
+        wages=[]
+        attend =self.attendance()
+        total_wage=0
+        
+        for i in range(0,30):
+            
+            if attend==0:
+                attend_list.append('Abs')
+                wages.append(000)
+                
+            elif attend==1:
+                daily_wage=self.compute_daily_wage()
+                monthly_sal= self.total_hour*daily_wage
+                total_wage=total_wage+monthly_sal
+                attend_list.append('Pres')
+                wages.append(monthly_sal)
+                
+            else:
+                parttime_wage=self.compute_daily_wage()
+                monthly_sal= self.total_parttime_hour*parttime_wage
+                total_wage=total_wage+monthly_sal
+                attend_list.append('PartTime')
+                wages.append(monthly_sal)
+        print(f"Attendance list of the month(for 30 days): {attend_list}")
+        print(f"Monthly wages of all employees: {wages}")
+        return total_wage
+    
 
-def wages_of_an_hour(no_of_hours, per_hour_wage ):
-    """
-        
-        Description: 
-           This function is used to calculate the wages based on hours of an employees.
-        Parameters:
-           no_of_hours, per_hour_wage is a parameter that used to check the condition
-        Return:
-            It prints the output according to the calculation . 
-        
-    """
-    
-    total_wages=no_of_hours*per_hour_wage
-    print(f"parttime wage do employee get for his/her work will be: {total_wages} rupees")
-    
-def wages_of_days(no_of_days,wage_per_day):
-    """
-        
-        Description: 
-           This function is used to calculate the wages based on dayspof an employees.
-        Parameters:
-           no_of_days,wage_per_day is a parameter that used to check the condition
-        Return:
-            It prints the output according to the calculation . 
-        
-    """
-    
-    total_wages=no_of_days*wage_per_day
-    print(f"parttime wage do employee get for his/her work will be: {total_wages} rupees")
-    
 def main():
-    print("--------------------")
-    # Check attendance
-    attended = random.randint(0, 1)
-    check_attendance(attended)
-
-    # Calculate daily wage
-    wage_per_hour = 20
-    no_of_hour = 8
-    Emp_Daily_Wage(wage_per_hour, no_of_hour)
-
-    # Calculate parttime wage
-    no_of_hours = 4
-    per_hour_wage = 18
-    parttime_emp_wage(no_of_hours, per_hour_wage )
-    
-    # calculate monthly wage
-    working_days = 20
-    daily_wages = 160
-    monthly_emp_wage(daily_wages, working_days )   
-    
-    # calculate the wages on days and hours
-    no_of_hours = 100
-    per_hour_wage = 20
-    no_of_days=20
-    wage_per_day=160
-    
-    wages_of_an_hour(no_of_hours, per_hour_wage )
-    wages_of_days(no_of_days,wage_per_day)
-    
-if __name__ == "__main__":
+    e1=Employee()
+    e1.welcome()
+                
+    total_sal=e1.compute_monthly_wages()
+    print(f"total salary of all employee's will be: {total_sal}")
+        
+if __name__=="__main__":
     main()
